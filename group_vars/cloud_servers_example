@@ -1,0 +1,14 @@
+# common
+main_user_name: username goes here
+
+# admin email
+# fail2ban reports will be sent to this address
+admin_email: email address goes here
+friendly_networks:
+  - "other networks go here"
+server_user_name: {{ main_user_name  }}
+# pip install passlib
+# python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
+server_user_password: output from above goes here
+user_public_keys:
+  - ~/.ssh/id_rsa.pub
