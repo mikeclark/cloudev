@@ -1,0 +1,51 @@
+
+- name: Install development-related packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - vim
+    - php
+    - phpmd
+    - phpunit
+    - composer
+    - tmux
+    - git
+    - htop
+    - iotop
+    - screen
+    - iftop
+    - ruby
+    - debian-goodies
+  tags:
+    - dependencies
+
+- name: install tmux-powerline
+  become: yes
+  become_user: "{{ main_user_name }}"
+  git:
+    repo: 'https://github.com/erikw/tmux-powerline.git'
+    dest: ~/development/tmux_powerline
+    
+- name: install sm_dotfiles
+  become: yes
+  become_user: "{{ main_user_name }}"
+  git:
+    repo: 'https://github.com/mikeclark/sm_dotfiles.git'
+    dest: ~/development/sm_dotfiles
+    force: yes
+
+- name: install vundle
+  become: yes
+  become_user: "{{ main_user_name }}"
+  git:
+    repo: 'https://github.com/VundleVim/Vundle.vim.git'
+    dest: ~/.vim/bundle/Vundle.vim
+    force: yes
+
+- name: Install dotfiles and vim plugins
+  command: chdir=~/development/sm_dotfiles {{ item }}
+  become: yes
+  become_user: "{{ main_user_name }}"
+  with_items:
+    - chmod +x bootstrap.sh
+    - ./bootstrap.sh --force
+    - vim +PluginInstall +qall

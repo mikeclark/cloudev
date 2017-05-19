@@ -1,0 +1,14 @@
+---
+- name: Cloud Dev Enviroment
+  hosts: cloud_servers
+  gather_facts: no
+  pre_tasks:
+    - name: Install Python2
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    - name: Gather Facts
+      setup:
+
+  roles:
+    - common
+    - dev
+    - ufw

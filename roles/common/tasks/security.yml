@@ -1,0 +1,16 @@
+- name: Install security-related packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - fail2ban
+    - whois
+    - lynis
+    - rkhunter
+  tags:
+    - dependencies
+
+- name: Copy fail2ban configuration into place
+  template: src=fail2ban.local.conf.j2 dest=/etc/fail2ban/jail.local
+  notify: restart fail2ban
+
+- name: Ensure fail2ban is started
+  service: name=fail2ban state=started
