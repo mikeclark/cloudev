@@ -1,14 +1,19 @@
-# common
+# username to create and add ssh key to
 main_user_name: username goes here
 
 # admin email
 # fail2ban reports will be sent to this address
 admin_email: email address goes here
+
+# networks to add to ssh friendlies 
 friendly_networks:
   - "other networks go here"
-server_user_name: {{ main_user_name  }}
+
+# password for above main user that will be created
 # pip install passlib
 # python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
-server_user_password: output from above goes here
+main_user_password: output from above goes here
+
+# grab current public key
 user_public_keys:
   - ~/.ssh/id_rsa.pub

@@ -7,16 +7,16 @@
       upgrade: dist
 
 - name: Create new user
-  user: name={{ server_user_name }} password={{ server_user_password }} shell=/bin/bash
+  user: name={{ main_user_name }} password={{ main_user_password }} shell=/bin/bash
 
 - name: Add user to sudoers
   lineinfile: dest=/etc/sudoers
-              regexp="{{ server_user_name }} ALL"
-              line="{{ server_user_name }} ALL=(ALL) ALL"
+              regexp="{{ main_user_name }} ALL"
+              line="{{ main_user_name }} ALL=(ALL) ALL"
               state=present
 
 - name: Add authorized_keys for the user
-  authorized_key: user={{ server_user_name }} key="{{ lookup('file', item) }}"
+  authorized_key: user={{ main_user_name }} key="{{ lookup('file', item) }}"
   with_items:
     - "{{ user_public_keys }}"
 
