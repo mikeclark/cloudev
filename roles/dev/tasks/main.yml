@@ -3,10 +3,6 @@
   apt: pkg={{ item }} state=installed
   with_items:
     - vim
-    - php
-    - phpmd
-    - phpunit
-    - composer
     - tmux
     - git
     - htop
@@ -15,6 +11,17 @@
     - iftop
     - ruby
     - debian-goodies
+    - cowsay
+    - sqlite
+    - openssl
+    - apache2
+    - php
+    - libapache2-mod-php
+    - php-mcrypt
+    - php-mysql
+    - phpmd
+    - phpunit
+    - composer
   tags:
     - dependencies
 
