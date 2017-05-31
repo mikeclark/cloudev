@@ -25,6 +25,30 @@
   tags:
     - dependencies
 
+- name: Setup git Config Editor
+  become: yes
+  become_user: "{{ main_user_name }}"
+  git_config:
+    name: core.editor
+    scope: global
+    value: vim
+
+- name: Setup git Config Email
+  become: yes
+  become_user: "{{ main_user_name }}"
+  git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_email  }}"
+
+- name: Setup git Config Name
+  become: yes
+  become_user: "{{ main_user_name }}"
+  git_config:
+    name: user.name
+    scope: global
+    value: "{ git_name  }"
+
 - name: install tmux-powerline
   become: yes
   become_user: "{{ main_user_name }}"

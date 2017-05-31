@@ -5,6 +5,10 @@ main_user_name: username goes here
 # fail2ban reports will be sent to this address
 admin_email: email address goes here
 
+# git settings
+git_name: Your Name
+git_email: "{{ admin_email }}"
+
 # networks to add to ssh friendlies 
 friendly_networks:
   - "other networks go here"
