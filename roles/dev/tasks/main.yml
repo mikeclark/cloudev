@@ -12,13 +12,18 @@
     - ruby
     - debian-goodies
     - cowsay
-    - sqlite
+    - sqlite3
+    - libsqlite3-dev
     - openssl
     - apache2
     - php
     - libapache2-mod-php
+    - php-pear
     - php-mcrypt
     - php-mysql
+      php-mbstring
+      php-xml
+      php-sqlite3
     - phpmd
     - phpunit
     - composer
