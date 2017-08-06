@@ -3,8 +3,15 @@
   hosts: cloud_servers
   gather_facts: no
   pre_tasks:
-    - name: Install Python2
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    - name: Install aptitude
+      raw: test ! -e /usr/bin/aptitude && sudo apt-get install -qq aptitude || true
+
+    - name: Install python 2.7
+      raw: test ! -e /usr/bin/python && (sudo apt-get update -qq && sudo apt-get install -qq python2.7) || true
+
+    - name: Install letsencrypt 
+      raw: test ! -e /usr/bin/letsencrypt && (sudo apt-get update -qq && sudo apt-get install -qq letsencrypt) || true
+                                                  i
     - name: Gather Facts
       setup:
 

@@ -1,4 +1,5 @@
 - name: Install logwatch
+  become: true
   apt: pkg={{ item }} state=installed
   with_items:
     - libdate-manip-perl
@@ -7,10 +8,13 @@
     - dependencies
 
 - name: Configure logwatch
+  become: true
   template: src=logwatch.conf.j2 dest=/etc/logwatch/conf/logwatch.conf
 
 - name: Remove logwatch's dist cronjob
+  become: true
   file: state=absent path=/etc/cron.daily/00logwatch
 
 - name: Configure weekly logwatch cronjob
+  become: true
   cron: special_time=weekly job=/usr/sbin/logwatch name=logwatch

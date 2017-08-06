@@ -1,4 +1,5 @@
 - name: Install security-related packages
+  become: true
   apt: pkg={{ item }} state=installed
   with_items:
     - fail2ban
@@ -9,8 +10,10 @@
     - dependencies
 
 - name: Copy fail2ban configuration into place
+  become: true
   template: src=fail2ban.local.conf.j2 dest=/etc/fail2ban/jail.local
   notify: restart fail2ban
 
 - name: Ensure fail2ban is started
+  become: true
   service: name=fail2ban state=started

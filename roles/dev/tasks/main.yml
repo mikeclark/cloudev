@@ -1,5 +1,6 @@
 
 - name: Install development-related packages
+  become: true
   apt: pkg={{ item }} state=installed
   with_items:
     - vim
@@ -16,17 +17,23 @@
     - libsqlite3-dev
     - openssl
     - apache2
-    - php
-    - libapache2-mod-php
+    - php7.0 
+    - libapache2-mod-php7.0
+    - php7.0-cli
+    - php7.0-common
+    - php7.0-mbstring
+    - php7.0-gd
+    - php7.0-intl
+    - php7.0-xml
+    - php7.0-mysql
+    - php7.0-mcrypt
+    - php7.0-zip
     - php-pear
-    - php-mcrypt
-    - php-mysql
-      php-mbstring
-      php-xml
-      php-sqlite3
+    - php7.0-sqlite3
     - phpmd
     - phpunit
     - composer
+    - mariadb-server
   tags:
     - dependencies
 

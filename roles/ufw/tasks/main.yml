@@ -3,20 +3,24 @@
 # ufw includes sensible ICMP defaults.
 
 - name: Install ufw
+  become: true
   apt: pkg=ufw state=present
   tags:
     - dependencies
     - ufw
 
 - name: Deny everything
+  become: true
   ufw: policy=deny
   tags: ufw
 
 - name: Set firewall rule for DNS
+  become: true
   ufw: rule=allow port=domain
   tags: ufw
 
 - name: Set firewall rules for web traffic and SSH
+  become: true
   ufw: rule=allow port={{ item }} proto=tcp
   with_items:
     - http
@@ -25,10 +29,12 @@
   tags: ufw
 
 - name: Enable UFW
+  become: true
   ufw: state=enabled
   tags: ufw
 
 - name: Check config of ufw
+  become: true
   command: cat /etc/ufw/ufw.conf
   register: ufw_config
   changed_when: False  # never report as "changed"
